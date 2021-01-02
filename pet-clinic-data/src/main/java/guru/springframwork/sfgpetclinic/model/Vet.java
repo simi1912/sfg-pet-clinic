@@ -1,9 +1,14 @@
 package guru.springframwork.sfgpetclinic.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "vets")
 public class Vet extends Person{
@@ -15,11 +20,4 @@ public class Vet extends Person{
             inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     private Set<Specialty> specialties = new HashSet<>();
 
-    public Set<Specialty> getSpecialties() {
-        return specialties;
-    }
-
-    public void setSpecialties(Set<Specialty> specialties) {
-        this.specialties = specialties;
-    }
 }
