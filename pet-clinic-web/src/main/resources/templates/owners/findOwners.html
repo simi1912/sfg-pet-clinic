@@ -3,7 +3,8 @@
     th:replace="~{fragments/layout :: layout (~{::body}, 'owners')}">
 <body>
     <!--/*@thymesVar id="owner" type="guru.springframwork.sfgpetclinic.model.Owner"*/-->
-    <from th:object="${owner}" th:action="@{/templates/owners}" method="get"
+    <h2>Find Owners</h2>
+    <form th:object="${owner}" th:action="@{/owners}" method="get"
           class="form-horizontal" id="search-owner-form">
         <div class="form-group">
             <div class="control-group" id="lastNameGroup">
@@ -23,7 +24,7 @@
                 <button type="submit" class="btn btn-default">Find Owner</button>
             </div>
         </div>
-    </from>
+    </form>
     <br/>
     <a class="btn btn-default" th:href="@{/owners/new}">Add Owner</a>
 </body>
