@@ -43,10 +43,9 @@ public class OwnerController {
 
     @GetMapping
     public String processFindForm(Owner owner, BindingResult result, Model model){
-        System.out.println(owner.getLastName()+owner.getId()+owner.getCity());
         if(owner.getLastName() == null)
             owner.setLastName("");
-        List<Owner> results = ownerService.findAllByLastNameLike(owner.getLastName());
+        List<Owner> results = ownerService.findAllByLastNameLike("%"+owner.getLastName()+"%");
         if(results.isEmpty()){
             result.rejectValue("lastName","notFound", "notFound");
             return "owners/findOwners";
@@ -55,7 +54,7 @@ public class OwnerController {
             return "redirect:/owners/"+owner.getId();
         } else {
             model.addAttribute("selections", results);
-            return "owners/ownersList";
+            return "owners/ownerList";
         }
 
     }
