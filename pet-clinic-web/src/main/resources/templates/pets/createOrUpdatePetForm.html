@@ -16,10 +16,10 @@
                 <span th:text="${pet.owner?.firstName+' '+pet.owner?.lastName}" ></span>
             </div>
         </div>
-        <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}">
-        <input th:replace="~{fragments/inputField :: input ('Birth Date', 'birthDate', 'date')}">
+        <input th:replace="~{fragments/inputField :: input ('Name', 'name', 'text')}"/>
+        <input th:replace="~{fragments/inputField :: input ('Birth Date', 'birthDate', 'date')}"/>
         <!--/*@thymesVar id="types" type="java.util.List"*/-->
-        <input th:replace="~{fragments/inputField :: input ('Type', 'petType', ${types})}">
+        <input th:replace="~{fragments/selectField :: select ('Type', 'petType', ${types})}"/>
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
