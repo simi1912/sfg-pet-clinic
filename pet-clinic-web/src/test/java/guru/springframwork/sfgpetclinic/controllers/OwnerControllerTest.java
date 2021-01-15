@@ -109,6 +109,25 @@ class OwnerControllerTest {
     }
 
     @Test
+    void processFindFormEmptyReturnMany() throws Exception{
+        List<Owner> owners = new ArrayList<>();
+        Owner owner1 = new Owner();
+        owner1.setId(1L);
+        owners.add(owner1);
+        Owner owner2 = new Owner();
+        owner2.setId(2L);
+        owners.add(owner2);
+
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(owners);
+
+        mockMvc.perform(get("/owners")
+                    .param("lastName", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("owners/ownerList"))
+                .andExpect(model().attribute("selections", hasSize(2)));
+    }
+
+    @Test
     void displayOwner() throws Exception {
         Owner owner1 = new Owner();
         owner1.setId(1L);
