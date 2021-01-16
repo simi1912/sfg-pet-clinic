@@ -7,6 +7,7 @@ import guru.springframwork.sfgpetclinic.services.OwnerService;
 import guru.springframwork.sfgpetclinic.services.PetService;
 import guru.springframwork.sfgpetclinic.services.PetTypeService;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
@@ -65,6 +66,8 @@ public class PetController {
         if(StringUtils.hasLength(pet.getName()) && pet.isNew() && owner.getPet(pet.getName(), true) !=null)
             result.rejectValue("name", "duplicate", "already exists");
         owner.getPets().add(pet);
+        ownerService.save(owner);
+        pet.setOwner(owner);
         if(result.hasErrors()){
             model.addAttribute("pet", pet);
             return VIEWS_PETS_CREATE_OR_UPDATE_FROM;
